@@ -5,7 +5,7 @@ services:
       context: .  
       dockerfile: Dockerfile 
     volumes:
-      - ./src:/var/www/html
+      - ./rikotaan/src:/var/www/html
     ports:
       - 9000:80 # tällä osoitteella otetaan yhteys selaimella
     depends_on:
