@@ -1,8 +1,3 @@
-<?php
-    include 'funcs.php';
-?>
-
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,19 +14,12 @@
     </header>
     <main>
         <p>You can build modern user interfaces with the simplicity and power of hypertext</p>
-        <form hx-post="https://sakky.fi/fi">
-            <label for="note">Your note</label>
-            <input type="text" id="note" name="note">
-            <button>Save Button</button>
-        </form>
-        <?php // generateList(); ?> 
-        <?php include 'info.php'; ?>
-        <!-- <button
+        <button
             hx-get="info.php"
             hx-trigger="mouseenter[ctrlKey] once, click once"
             hx-target="main"
-            hx-swap="beforeend"
-            Learn More</button> -->
+            hx-swap="beforeend">
+            Learn More</button>
     </main>
 </body>
 </html>
