@@ -4,30 +4,27 @@
 // generoidaan datasta html koodia
 // echo palauttaa html koodin
 
-// "haetaan" tietokannasta
-$data = "htmx extends and generalizes the core idea of HTML as a hypertext, opening up many more possibilities directly within the language
-Now any element, not just anchors and forms, can issue an HTTP request
-Now any event, not just clicks or form submissions, can trigger requests
-Now any HTTP verb, not just GET and POST, can be used
-Now any element, not just the entire window, can be the target for update by the request";
-
-// Nyt $data:n sisällöstä halutaan generoida html lista, eli <ul>
-// jokaisen rivin lopussa on \n, jonka perusteella voidaan purkaa rivit erilleen
-
-// explode funktio ottaa annetun string datan ($data)
-// ja jakaa sen taulukkoon (array) annetun merkin ("\n") perusteella
-$lines = explode("\n", $data);
+// Siirretään data sessioon, jotta voidaan tallentaa siihen käyttäjän dataa.
+if(!isset($_SESSION['notes'])){
+    $_SESSION['notes'] = [
+        "htmx extends and generalizes the core idea of HTML as a hypertext, opening up many more possibilities directly within the language",
+        "Now any element, not just anchors and forms, can issue an HTTP request",
+        "Now any event, not just clicks or form submissions, can trigger requests",
+        "Now any HTTP verb, not just GET and POST, can be used",
+        "Now any element, not just the entire window, can be the target for update by the request",
+    ];
+}
 
 // luodaan html koodit
 
 echo "<ul>";
 
 // tässä luodaan li-elementit, $lines arrayn datasta (silmukalla)
-foreach($lines as $line){
-    // Silmukan sisällä, laitetaan $line li-elementin sisälle
+foreach($_SESSION['notes'] as $note){
+    // Silmukan sisällä, laitetaan $note li-elementin sisälle
     // trim, poistaa välilyönnit alusta ja lopusta
     // htmlspecialchars, estetään XSS, käsitteleen sisällön tekstinä
-    echo "<li>" . htmlspecialchars(trim($line)) . "</li>";
+    echo "<li>" . htmlspecialchars(trim($note)) . "</li>";
 }
 
 echo "</ul>";
