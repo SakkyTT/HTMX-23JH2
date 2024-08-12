@@ -20,6 +20,7 @@
         </section>
         <section>
             <ul id="items">
+                <!-- Lisää sivulle SESSION muuttuja, josta generoidaan nämä li-elementit -->
                 <li>
                     <span>Juusto</span>
                     <button>Remove</button>
