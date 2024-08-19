@@ -2,7 +2,7 @@
 
 session_start();
 
-usleep(4000000);
+// usleep(4000000);
 
 // Otetaan vastaan POST ja tallennetaan sessioon uusi item
 

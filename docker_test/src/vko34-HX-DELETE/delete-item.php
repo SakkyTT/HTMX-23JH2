@@ -2,7 +2,7 @@
 
 session_start();
 
-usleep(400000);
+// usleep(400000);
 
 // Kuinka otetaan DELETE parametri vastaan?
 
@@ -15,12 +15,24 @@ if($_SERVER['REQUEST_METHOD'] === 'DELETE'){
     if(isset($_GET['index'])){
         // Poistetaan taulukosta tietty indeksi
         $index = (int)$_GET['index'];
-        unset($_SESSION['items'][$index]);
+        print_r($_SESSION['items']);
+        unset($_SESSION['items'][$index]); // poisto indeksin perusteella  
+        echo " - POISTO - ";      
+        print_r($_SESSION['items']);
     }else{
         echo "ei ole indeksi";
     }
 }else{
     echo "ei ole DELETE metodi";
 }
+
+
+
+// 0 => yksi
+// 1 => kaksi
+// 2 => kolme
+
+// 0 => yksi
+// 1 => kolme
 
 ?>
