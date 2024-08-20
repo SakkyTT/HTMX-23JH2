@@ -4,7 +4,7 @@ include "funcs.php";
 
 session_start();
 
-usleep(4000000); // simuloidaan viive
+usleep(100000); // simuloidaan viive
 
 // Otetaan vastaan POST ja tallennetaan sessioon uusi item
 
