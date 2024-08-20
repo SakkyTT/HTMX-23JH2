@@ -70,8 +70,14 @@
                 </div>
                 <button type="submit">Add item</button>
             </form>
-            <form>
-                <button id="clear-all">Clear All</button>
+            <form 
+            hx-delete="clear-items.php"
+            hx-target="#items"
+            hx-swap="innerHTML"
+            hx-confirm="Are you sure?"
+            hx-disabled-elt="#clear-all"
+            >
+                <button type="submit" id="clear-all">Clear All</button>
             </form>
         </section>
         <section>
