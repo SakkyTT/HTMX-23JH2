@@ -4,6 +4,7 @@ include "data/images.php"; // $DATABASE_IMAGES muuttuja
 include "components/image.php"; // renderImage()
 
 session_start();
+// session_destroy();
 
 // Luodaan sessio muuttuja, jos sitä ei vielä ole
 if(!isset($_SESSION['selected-images'])){
@@ -34,7 +35,7 @@ if(!isset($_SESSION['selected-images'])){
                 <?php 
                     foreach($_SESSION['selected-images'] as $image){
                         // generoi li-elementin HTML koodin, $image datan pohjalta
-                        echo renderImage($image);
+                        echo renderImage($image, false);
                     }
                 ?>
             </ul>

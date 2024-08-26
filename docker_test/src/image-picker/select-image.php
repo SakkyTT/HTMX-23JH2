@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 include "data/images.php"; // $DATABASE_IMAGES muuttuja
 include "components/image.php"; // renderImage()
 
@@ -21,9 +23,22 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $_SESSION['selected-images'][] = $image;
     }
 
-    // 3. Palautetaan HTML
-    echo renderImage($image);
+    // 3. Palautetaan HTML, määritetään funktioon false, että kyseessä on DELETE-versio
+    echo renderImage($image, false);
 }
 
+if($_SERVER['REQUEST_METHOD'] === 'DELETE'){
+    if(isset($_GET['id'])){
+        $imageId = $_GET['id'];
+        print_r($_SESSION['selected-images']);
+        echo "------------------------------------------------";
+        // Etsitään sen taulukon indeksi, jossa on valitun kuvan id
+        $imageIndex = null; // kuvan indeksi sessiossa
+        foreach($_SESSION['selected-images'] as $index => $image){
+            echo $index; // string
+            print_r($image); // taulukot
+        }
+    }
+}
 
 ?>
