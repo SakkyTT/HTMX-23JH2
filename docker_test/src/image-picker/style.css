@@ -90,6 +90,12 @@ li img {
     height: 100%;
     object-fit: cover;
     border-radius: 0.5rem;
+
+    -webkit-user-drag: none; /* chrome, edge*/
+    -moz-user-select: none;
+    user-select: none;
+    pointer-events: auto;
+
 }
 
 li h3 {

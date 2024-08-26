@@ -22,7 +22,7 @@ if(!isset($_SESSION['selected-images'])){
     <title>Image Picker</title>
 </head>
 <body>
-    <header>
+    <header id="testi">
         <img src="logo.png" alt="Camera logo">
         <h1>PhotoPicker</h1>
         <p>Pick a collection of photos from the selection.</p>
@@ -44,12 +44,26 @@ if(!isset($_SESSION['selected-images'])){
         <section>
             <!-- Kaikki kuvat -->
              <h2>Available Images</h2>
-             <ul>
+             <ul id="available-images">
                 <?php 
                     // Käydään läpi /data/images.php tiedoston
                     // muuttujan $DATABASE_IMAGES taulukko
                     // "tietokannasta haettu"
-                    foreach($DATABASE_IMAGES as $image){
+
+                    $selected = $_SESSION['selected-images'];
+                    // Lisätään suodatus, joka ottaa pois kuvat, jotka käyttäjä on jo valinnut
+                    $availableImages = array_filter(
+                        $DATABASE_IMAGES, 
+                        // anonyymi funktio
+                        function($image) use ($selected){
+                            // Tämä funktio on suodatin
+                             // Mitä tämä päästää läpi, on array_filter lopputuloksena
+                            return !in_array($image, $selected);
+                            // tämän funktion pitää palauttaa joko TRUE tai FALSE
+                        }
+                    ); // array_filter ei muokkaa alkuperäistä taulukkoa, vaan palauttaa uuden version
+
+                    foreach($availableImages as $image){
                         echo renderImage($image);
                     }
                 ?>
