@@ -16,7 +16,7 @@ function showConfirmationModal(event){
                 <p>Do you really want to ${action} this picture?</p>
                 <div id="confirmation-actions">
                     <button id="action-no" class="button-text">No</button>
-                    <button id="action-yes" class="button">Yes</button>
+                    <button id="action-yes" class="button ${action}">Yes</button>
                 </div>
             </div>
         </dialog>
