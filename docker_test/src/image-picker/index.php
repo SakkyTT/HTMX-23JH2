@@ -28,7 +28,17 @@ if(!isset($_SESSION['selected-images'])){
         <p>Pick a collection of photos from the selection.</p>
     </header>
     <main>
-        <section>
+    <dialog class="modal">
+        <div id="confirmation">
+            <h2>Are you Sure?</h2>
+            <p>Do you really want to ACTION this picture?</p>
+            <div id="confirmation-actions">
+                <button id="action-no" class="button-text">No</button>
+                <button id="action-yes" class="button">Yes</button>
+            </div>
+        </div>
+    </dialog>
+        <section id="selected-images-section">
             <!-- Käyttäjän valinnat -->
             <h2>Selected Images</h2>
             <ul id="selected-images">
