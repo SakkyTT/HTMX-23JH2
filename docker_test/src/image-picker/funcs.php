@@ -1,9 +1,8 @@
 <?php
 
-session_start(); // Kokeillaan haittaako 2kpl session start
 
 // Funktio palauttaa taulukossa kaksi vapaana olevaa kuvaa
-function getSuggestedImages(){
+function getSuggestedImages($DATABASE_IMAGES){
     $selected = $_SESSION['selected-images'];
     $availableImages = array_filter(
         $DATABASE_IMAGES, 

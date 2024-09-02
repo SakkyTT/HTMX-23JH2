@@ -40,9 +40,11 @@ if(!isset($_SESSION['selected-images'])){
     <main>
         <section id="suggested-images-section">
             <h2>Currently suggested</h2>
-            <ul id="suggested-images">
+            <ul id="suggested-images"
+                hx-get=""
+            >
                 <?php
-                    $suggestedImages = getSuggestedImages();
+                    $suggestedImages = getSuggestedImages($DATABASE_IMAGES);
                     foreach($suggestedImages as $image){                        
                         echo renderImage($image);
                     }
