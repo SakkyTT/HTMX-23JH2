@@ -1,7 +1,16 @@
 <?php
 
+// state, olotila, mitä dataa sovelluksessa on (muuttujia, tietokanta)
+// update, päivitys, data muuttuu jollakin tavalla, uusi data jne
+//      palvelimen logiikka, tai käyttäjän toiminta, kolmas osapuoli (sää api)
+//      observers/listeners programming paradign / design
+//      objektiA -> lähettää oman osoitteensa -> objektiB
+//      javascript event systeemi, taitaa olla tuollainen
+// render, generoidaan UI uudelleen, käyttämällä uutta dataa
+
 include "data/images.php"; // $DATABASE_IMAGES muuttuja
 include "components/image.php"; // renderImage()
+include "funcs.php"; // getSuggestedImages()
 
 session_start();
 // session_destroy();
@@ -29,11 +38,23 @@ if(!isset($_SESSION['selected-images'])){
         <p>Pick a collection of photos from the selection.</p>
     </header>
     <main>
+        <section id="suggested-images-section">
+            <h2>Currently suggested</h2>
+            <ul id="suggested-images">
+                <?php
+                    $suggestedImages = getSuggestedImages();
+                    foreach($suggestedImages as $image){                        
+                        echo renderImage($image);
+                    }
+                ?>
+            </ul>
+        </section>
+
         <section id="selected-images-section">
             <!-- Käyttäjän valinnat -->
             <h2>Selected Images</h2>
             <ul id="selected-images">
-                <?php 
+                <?php
                     foreach($_SESSION['selected-images'] as $image){
                         // generoi li-elementin HTML koodin, $image datan pohjalta
                         echo renderImage($image, false);
