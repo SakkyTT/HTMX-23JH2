@@ -27,10 +27,15 @@ if(!isset($_SESSION['selected-images'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="htmx.js" defer></script>
+    <!-- Tässä HTMX konfigurointi myös -->
+    <!-- <meta name="htmx-config" content='{"defaultSwapStyle": "outerHTML"}'> -->
+    <script src="htmx.js" defer></script>    
+    <script src="debug-htmx.js" defer></script>   
     <script src="main.js" defer></script>
     <title>Image Picker</title>
 </head>
+<!-- Tässä testataaan htmx debug lisäosaa -->
+<!-- <body hx-ext="debug"> -->
 <body>
     <header id="testi">
         <img src="logo.png" alt="Camera logo">
@@ -41,7 +46,9 @@ if(!isset($_SESSION['selected-images'])){
         <section id="suggested-images-section">
             <h2>Currently suggested</h2>
             <ul id="suggested-images"
-                hx-get=""
+                hx-get="suggested-images.php"
+                hx-swap="innerHTML"
+                hx-trigger="every 5s"
             >
                 <?php
                     $suggestedImages = getSuggestedImages($DATABASE_IMAGES);
@@ -50,6 +57,7 @@ if(!isset($_SESSION['selected-images'])){
                     }
                 ?>
             </ul>
+            <div id="loading"></div>
         </section>
 
         <section id="selected-images-section">

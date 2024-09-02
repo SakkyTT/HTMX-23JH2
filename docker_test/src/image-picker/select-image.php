@@ -46,7 +46,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     // päivitetään suggested images section
     $suggestedImages = getSuggestedImages($DATABASE_IMAGES);
-    echo "<ul id=\"suggested-images\" hx-swap-oob=\"true\">";
+    echo "<ul id=\"suggested-images\" hx-swap-oob=\"innerHTML\">";
 
         foreach($suggestedImages as $image){
             echo renderImage($image);
