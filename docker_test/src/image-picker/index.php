@@ -43,7 +43,7 @@ if(!isset($_SESSION['selected-images'])){
         <p>Pick a collection of photos from the selection.</p>
     </header>
     <main>
-        <section id="suggested-images-section">
+        <section id="suggested-images-section">            
             <h2>Currently suggested</h2>
             <ul id="suggested-images"
                 hx-get="suggested-images.php"
@@ -57,7 +57,7 @@ if(!isset($_SESSION['selected-images'])){
                     }
                 ?>
             </ul>
-            <div id="loading"></div>
+            <div id="loading"></div>        
         </section>
 
         <section id="selected-images-section">

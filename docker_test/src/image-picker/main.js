@@ -55,3 +55,12 @@ function showConfirmationModal(event){
 } //showConfirmationModal päättyy
 
 document.addEventListener('htmx:confirm', showConfirmationModal);
+
+document.getElementById('suggested-images').addEventListener('htmx:afterRequest', function(event) {
+    console.log("evented");
+    const loadingDiv = document.getElementById('loading');
+    loadingDiv.style.animation = 'none';
+    loadingDiv.style.width = '0%';
+    loadingDiv.offsetHeight; // trigger reflow    
+    loadingDiv.style.animation = null; // selain optimoi takaisin samaan pisteeseen
+});

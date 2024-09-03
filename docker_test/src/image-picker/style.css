@@ -254,3 +254,8 @@ li:hover{
     height: 0.4rem;
     animation: timer 5s linear forwards;
 }
+
+#suggested-images-section{
+    border: none;
+    max-width: 40rem;
+}
