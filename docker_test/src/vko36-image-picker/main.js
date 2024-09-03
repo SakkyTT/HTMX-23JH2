@@ -56,11 +56,23 @@ function showConfirmationModal(event){
 
 document.addEventListener('htmx:confirm', showConfirmationModal);
 
-document.getElementById('suggested-images').addEventListener('htmx:afterRequest', function(event) {
-    console.log("evented");
+
+document.getElementById('suggested-images').addEventListener('htmx:afterRequest', function(event){
+    
+    if(event.detail.pathInfo.requestPath !== 'suggested-images.php'){
+        console.log(event.detail.pathInfo.requestPath)
+        return; // Lopettaa koko function suorituksen   
+    }else{
+        console.log(event.detail.pathInfo.requestPath);
+    }
+
+    console.log("eventing");
+    console.log(event);
+
+    // resetoidaan palkin animaatio
     const loadingDiv = document.getElementById('loading');
+
     loadingDiv.style.animation = 'none';
-    loadingDiv.style.width = '0%';
-    loadingDiv.offsetHeight; // trigger reflow    
-    loadingDiv.style.animation = null; // selain optimoi takaisin samaan pisteeseen
+    loadingDiv.offsetHeight; // activoi selaimessa CSS reflow:n, jolloin animaatio alkaa taas alusta
+    loadingDiv.style.animation = null; // palauttaa oletus arvon elementille
 });
