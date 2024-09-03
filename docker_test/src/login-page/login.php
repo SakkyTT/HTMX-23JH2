@@ -11,13 +11,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
 
     if(!$password || strlen($password) < 8){
-        $errors['password'] = "Please must be at least 8 characters long.";
+        $errors['password'] = "Password must be at least 8 characters long.";
     }
 
     // generoidaan vastaus virheiden perusteella
     if(count($errors) > 0){
         echo "
-            <div id='extra-information'>
                 <ul id='form-errors'>
         ";
         foreach($errors as $error){
@@ -25,7 +24,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         }
         echo "
                 </ul>
-            </div>
         ";
 
     } else {
