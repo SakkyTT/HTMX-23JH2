@@ -8,19 +8,27 @@
 </head>
 <body>
     <main>
-        <form>
-            <img src="" alt="">
+        <form hx-post="login.php">
+            <img src="images/lock.jpg" alt="icon of a pixel art padlock">
             <div class="control">
-                <label for=""></label>
-                <input type="text">
-                <p></p>
+                <label for="email">Email</label>
+                <input id="email" type="email" name="email"
+                    hx-post="validate.php"
+                    hx-target="next p"
+                >
+                <p class="error"></p>
             </div>
             <div class="control">
-                <label for=""></label>
-                <input type="text">
-                <p></p>
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password"
+                    hx-post="validate.php"
+                    hx-target="next p"
+                >
+                <p class="error"></p>
             </div>
-            <button></button>
+            <button type="submit">
+                Login
+            </button>
         </form>
     </main>
 </body>
