@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    session_destroy();
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +18,7 @@
             hx-ext="response-targets"
             hx-post="login.php"
             hx-headers='{"x-csrf-token": "5jg85ghl485gu5j85g58h3f8h3f38h45"}'
-            hx-target-422="#extra-information"
+            hx-target-4*="#extra-information"
             hx-target-5*=".control"
             hx-sync="this: replace"
         >
