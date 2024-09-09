@@ -4,20 +4,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login HTMX</title>
     <script src="htmx.js" defer></script>
+    <script src="htmx-response-targets.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <main>
         <form 
+            hx-ext="response-targets"
             hx-post="login.php"
             hx-headers='{"x-csrf-token": "5jg85ghl485gu5j85g58h3f8h3f38h45"}'
-            hx-target="#extra-information"
+            hx-target-422="#extra-information"
+            hx-target-5*=".control"
             hx-sync="this: replace"
         >
         <!-- paina enter -->
             <img src="images/lock.jpg" alt="icon of a pixel art padlock">
             <div class="control">
-                <label for="email">Edasdasdmail</label>
+                <label for="email">Email</label>
                 <input id="email" type="email" name="email"
                     hx-post="validate.php"
                     hx-target="next p"
