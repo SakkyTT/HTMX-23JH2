@@ -10,7 +10,7 @@
     <header id="main-header">
         <div id="main-title">
             <a href="/shopping-SPA/public">
-                <img src="../public/logo.png" alt="Jacket logo">
+                <img src="/shopping-SPA/public/logo.png" alt="Jacket logo">
                 <h1>Jacket Store</h1>
             </a>
         </div>

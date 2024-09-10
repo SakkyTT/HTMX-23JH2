@@ -3,7 +3,7 @@
 require_once "../data/products.php";
 
 // Yksinkertainen routing
-// /shopping-spa?page=product => /shopping-spa/product
+// /shopping-spa?page=product&id=p3 => /shopping-spa/product/p3
 $page = $_GET["page"] ?? "home";
 
 // Jokainen yhteys tulee tätä kautta
