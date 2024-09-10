@@ -16,6 +16,9 @@ switch($page){
     case "login":
         require "../routes/login.php"; // esimerkki
         break;
+    case "cart":
+        require "../routes/cart.php";
+        break;
     default:
         require "../routes/home.php";
 }

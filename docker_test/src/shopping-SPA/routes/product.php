@@ -24,7 +24,7 @@ include "../templates/header.php";
         <div>
             <h1><?= $product["title"] ?></h1>
             <p id="product-price"><?= $product["price"] ?></p>
-            <form action="">
+            <form method="post" action="/shopping-SPA/public/cart">
                 <button>Add to Cart</button>
             </form>
         </div>
