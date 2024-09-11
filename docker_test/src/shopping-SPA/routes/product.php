@@ -1,18 +1,23 @@
 <?php
+
+require_once '../data/db_connection.php';
+
 if(!isset($_GET["id"])){
     die("Product not found.");
 }
 
 $productId = $_GET["id"];
-$product = array_filter($PRODUCTS, function ($productFilter) use ($productId) {
-    return $productFilter["id"] === $productId;
-});
 
-if(empty($product)){
+$stmt = $conn->prepare("SELECT * FROM products WHERE id = ?");
+$stmt->bind_param("s", $productId);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
     die("Product not found.");
 }
 
-$product = array_values($product)[0]; // puretaan turha taulukko datan ympäriltä
+$product = $result->fetch_assoc();
 $title = $product["title"];
 
 include "../templates/header.php";

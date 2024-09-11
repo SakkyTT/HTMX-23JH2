@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/shopping-SPA/public/main.css">
     <script src="/shopping-SPA/public/htmx.js" defer></script>
 </head>
-<body hx-boost="true">
+<body >
     <header id="main-header">
         <div id="main-title">
             <a href="/shopping-SPA/public">
