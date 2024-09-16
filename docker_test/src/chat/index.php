@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Demo</title>
     <!-- htmx, css, lisätään myöhemmin -->
+     <link rel="stylesheet" href="main.css">
      <script>
         function toggleChatbox(){
             // Näytetään chat ja piilotetaan nappi
