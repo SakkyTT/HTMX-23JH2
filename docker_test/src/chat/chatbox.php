@@ -3,6 +3,7 @@
 // generateSentMessage()
 // generateReceivedMessage()
 include "templates/chat-bubbles.php";
+include "db_connection.php";
 
 // Kovakoodataan kirjautunut käyttäjä ja valittu chat
 // Nämä viittaa tietokannan Id sarakkeeseen
