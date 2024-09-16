@@ -1,5 +1,9 @@
 <?php
 
+// generateSentMessage()
+// generateReceivedMessage()
+include "templates/chat-bubbles.php";
+
 // Kovakoodataan kirjautunut käyttäjä ja valittu chat
 // Nämä viittaa tietokannan Id sarakkeeseen
 $_SESSION["user_id"] = 1;
@@ -7,10 +11,40 @@ $_SESSION["chat_id"] = 1;
 
 // Jostakin syystä tarvitaan id erillisessä muuttujassa
 // $_SESSION ei toiminut
+$chat_id = $_SESSION["chat_id"];
 $user_id = $_SESSION["user_id"];
+
+$query = '
+    SELECT
+        m.message_id,
+        m.content,
+        m.user_id,
+        u.username,
+        m.parent_message_id,
+        m.sent_at
+    FROM messages m
+    JOIN users u ON m.user_id = u.user_id
+    WHERE m.chat_id = ?
+    ORDER BY m.message_id ASC
+';
+
+$stmt = $mysqli->prepare($query);
+$stmt->bind_param("i", $chat_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if(!$result){
+    die("Query failed!: " . $mysqli->error);
+}
 
 // Tietokannan haku
 $messages = [];
+while($row = $result->fetch_assoc()){
+    // Siirretään data taulukkoon
+    $messages[] = $row;
+}
+
+$mysqli->close();
 
 ?>
 
@@ -19,7 +53,7 @@ $messages = [];
         <h2>Chat</h2>
         <div class="buttons">
             <button><img src="" alt="_"></button>
-            <button><img src="" alt="X"></button>
+            <button onclick="toggleChatbox()"><img src="" alt="X"></button>
         </div>
     </header>
     <main>
@@ -52,3 +86,5 @@ $messages = [];
         </div>
     </footer>
 </div>
+
+<button id="show" class="toggle-button" onclick="toggleChatbox()">Open Chat</button>
