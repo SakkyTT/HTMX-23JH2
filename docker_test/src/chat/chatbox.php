@@ -72,11 +72,16 @@ $mysqli->close();
                 }
             ?>
         <?php endforeach; ?>
+
         <div class="reply-message-goes-here"></div>
     </main>
     <footer>
         <div>
-            <form>
+            <form 
+                hx-post="send-message.php"
+                hx-swap="beforebegin"
+                hx-target=".reply-message-goes-here"
+            >
                 <textarea name="chat-input" required></textarea>
                 <button>
                     <div id="svg-wrapper">
