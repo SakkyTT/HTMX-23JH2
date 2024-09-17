@@ -1,6 +1,7 @@
 <?php
     session_start();
 
+    include "templates/chat-bubbles.php";
     include "db_connection.php";
 
     header('Content-Type: text/event-stream');
@@ -8,7 +9,7 @@
     header('Connection: keep-alive');
 
     $i = 1;
-    while($i <= 3){
+    while($i <= 1){
         //echo "data: terve\n\n";
 
         // Tässä pitäisi olla event-driven architecture.
@@ -25,6 +26,7 @@
 
         $chat_id = $_SESSION["chat_id"];
         $user_id = $_SESSION["user_id"];
+        $latest_id = $_SESSION["latest_id"];
 
         $query = '
             SELECT
@@ -37,11 +39,13 @@
             FROM messages m
             JOIN users u ON m.user_id = u.user_id
             WHERE m.chat_id = ?
+            AND m.message_id > ?
+            AND m.user_id != ?
             ORDER BY m.message_id ASC
         ';
 
         $stmt = $mysqli->prepare($query);
-        $stmt->bind_param("i", $chat_id);
+        $stmt->bind_param("iii", $chat_id, $latest_id, $user_id);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -55,8 +59,17 @@
             // Siirretään data taulukkoon
             $messages[] = $row;
         }
-
-        echo "data: ". count($messages) ."\n\n";
+        // testaus SQL INSERT INTO messages (chat_id, user_id, content, sent_at) VALUES (1, 2, "SSE", NOW())
+        if(count($messages) > 0){
+            $message = $messages[0];
+            $_SESSION["latest_id"] = $message["message_id"];
+            // echo "data: \<test\>\n\n";
+            $newMessage = generateReceivedMessageStream($message['username'], 
+            $message['content'],
+            $message['parent_message_id'], $message['sent_at']);
+            echo "data: ". $newMessage ."\n\n";
+            flush();
+        }
 
         $i++;
         sleep(1);
