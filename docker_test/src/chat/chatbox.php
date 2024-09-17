@@ -63,8 +63,8 @@ $mysqli->close();
             <?php
                 // Käyttäjän omat viestit
                 if($message['user_id'] == $user_id){
-                    generateSentMessage($message['username'], $message['content'],
-                     $message['parent_message_id'], $message['sent_at']);
+                    generateSentMessage($message['content'], $message['sent_at'],
+                     $message['username'], $message['parent_message_id']);
                 }else{
                     // Muiden viestit
                     generateReceivedMessage($message['username'], $message['content'],

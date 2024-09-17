@@ -24,7 +24,7 @@
         if($stmt->execute()){
             // Toimii
             http_response_code(200);
-            echo "SQL Toimi";
+            echo generateSentMessage($messageContent, $timeNow);
         }else{
             // Virhe
             http_response_code(500);

@@ -1,6 +1,10 @@
 <?php
 
-function generateSentMessage($username, $content, $parentMessageId, $sentAt){
+function generateSentMessage(
+        $content,
+        $sentAt,
+        $username = null,
+        $parentMessageId = null){
     ?>
     <!-- HTML koodit -->
      <div class="message sent-container">
