@@ -72,14 +72,22 @@ $mysqli->close();
                 }
             ?>
         <?php endforeach; ?>
-
+        <div 
+            hx-ext="sse"
+            sse-connect="stream.php"
+            sse-swap="message"
+            hx-swap="beforeend"
+        >
+                <!-- Tänne tulevat kaikkien muiden uudet viestit -->
+        </div>
+            <!-- käyttäjän omat uudet viestit -->
         <div class="reply-message-goes-here"></div>
     </main>
     <footer>
         <div>
             <form 
                 hx-post="send-message.php"
-                hx-swap="beforebegin"
+                hx-swap="beforebegin show:.reply-message-goes-here:top"
                 hx-target=".reply-message-goes-here"
             >
                 <textarea name="chat-input" required></textarea>
