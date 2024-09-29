@@ -74,11 +74,14 @@ $mysqli->close();
                 }
             ?>
         <?php endforeach; ?>
+        
+        <!-- sse-connect="stream.php" -->
         <div 
             hx-ext="sse"
-            sse-connect="stream.php"
+            sse-connect="http://localhost:3001/stream"
             sse-swap="message"
             hx-swap="beforeend"
+            hx-on="htmx:sse:message:after-request=alert('Message received!')"
         >
                 <!-- Tänne tulevat kaikkien muiden uudet viestit -->
         </div>

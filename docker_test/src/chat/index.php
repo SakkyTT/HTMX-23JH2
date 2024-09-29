@@ -9,7 +9,7 @@ session_start();
      <link rel="stylesheet" href="main.css">
      <script src="https://unpkg.com/htmx.org@2.0.0/dist/htmx.min.js"></script>
      <script src="https://unpkg.com/htmx-ext-sse@2.2.2/sse.js"></script>
-     <script>
+     <script >
         function toggleChatbox(){
             // Näytetään chat ja piilotetaan nappi
             const chatbox = document.getElementById('chat');
@@ -18,6 +18,18 @@ session_start();
             chatbox.classList.toggle('open');
             toggleButton.classList.toggle('hidden'); // lisää aina
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.addEventListener('htmx:sseBeforeMessage', function(e) {
+                const element = document.querySelector('.reply-message-goes-here');
+        
+                    // Check if the element exists
+                    if (element) {
+                        // Scroll the element into view
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+            });
+});
      </script>
 </head>
 <body>
